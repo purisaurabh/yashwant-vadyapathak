@@ -64,7 +64,7 @@ const Home = () => {
 
   return (
     <div className="animate-fade-in">
-      {/* Carousel Hero Section */}
+    
       <section className="min-h-[100dvh] h-[100dvh] relative overflow-hidden pt-0 mt-0 mb-0">
         <div className="relative w-full h-full overflow-hidden">
           {carouselImages.map((img, index) => (
@@ -82,7 +82,6 @@ const Home = () => {
           ))}
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/40 to-black/60 z-[2]" />
 
-          {/* Tagline Overlay - transparent, no background */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3] text-center w-full px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -90,7 +89,6 @@ const Home = () => {
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               className="inline-block"
             >
-              {/* Dashed line above */}
               <div className="mx-auto mb-3 w-full max-w-2xl border-t-2 border-[#FF9933] border-dashed opacity-80" />
               <h1 className="text-[clamp(1.5rem,4vw,3.25rem)] sm:text-[clamp(1.75rem,4.5vw,3.75rem)] font-extrabold leading-tight tracking-wide text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
                 {t("Home.CarouselTagline")
@@ -110,12 +108,10 @@ const Home = () => {
                     </span>
                   ))}
               </h1>
-              {/* Dashed line below */}
               <div className="mx-auto mt-3 w-full max-w-2xl border-t-2 border-[#FF9933] border-dashed opacity-80" />
             </motion.div>
           </div>
 
-          {/* Carousel Indicators */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[4] flex gap-3">
             {carouselImages.map((_, index) => (
               <button
@@ -136,9 +132,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Pathak Section */}
       <section className="bg-[#e77218] pt-10 pb-16 md:pt-12 md:pb-20 relative overflow-hidden flex flex-col items-center">
-        {/* Decorative Side Vectors */}
         <img
           src="/drummer-left.svg"
           alt="Drummer Left"
@@ -150,7 +144,6 @@ const Home = () => {
           className="absolute right-[-2%] bottom-0 h-[50%] md:h-[80%] opacity-70 object-contain object-right-bottom pointer-events-none mix-blend-multiply flex-shrink-0"
         />
 
-        {/* Decorative Floating Images */}
         <motion.img
           initial={{ opacity: 0.15, rotate: -10 }}
           animate={{ opacity: 0.15, rotate: 10 }}
@@ -205,7 +198,6 @@ const Home = () => {
         />
 
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-12 text-center flex flex-col items-center w-full">
-          {/* Logo Title */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -220,7 +212,6 @@ const Home = () => {
             />
           </motion.div>
 
-          {/* Main Content - Centered */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -249,7 +240,6 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -267,9 +257,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* History Timeline Section */}
       <section className="py-16 bg-gradient-to-b from-[#fffaf0] to-white relative overflow-hidden">
-        {/* Background Decorative Element */}
         <div className="absolute top-0 left-0 w-full h-[300px] bg-gradient-to-b from-[#e77218]/5 to-transparent pointer-events-none"></div>
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full relative z-10">
@@ -290,12 +278,9 @@ const Home = () => {
           </motion.div>
 
           <div className="relative max-w-[1300px] mx-auto pb-16 px-4 md:px-0">
-            {/* Vertical Timeline line */}
             <div className="absolute left-[44px] md:left-1/2 md:-translate-x-1/2 top-4 bottom-0 w-1 bg-gradient-to-b from-[#e77218] via-[#e77218] to-transparent rounded-full shadow-[0_0_10px_rgba(231,114,24,0.3)] z-0" />
 
-            {/* 2023 Timeline Item */}
             <div className="relative mb-20 flex w-full">
-              {/* Year Node */}
               <div className="absolute left-[44px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 flex justify-center items-center z-20">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -314,7 +299,6 @@ const Home = () => {
               </div>
 
               <div className="flex flex-col md:flex-row w-full items-stretch">
-                {/* Left Side (Content) */}
                 <div className="w-full md:w-1/2 pl-[80px] md:pl-0 md:pr-14 flex items-center justify-end">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -323,9 +307,7 @@ const Home = () => {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
-                    {/* Desktop Right pointing arrow */}
                     <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-4 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-white border-b-[12px] border-b-transparent drop-shadow-[3px_0_3px_rgba(0,0,0,0.03)]" />
-                    {/* Mobile Left pointing arrow */}
                     <div className="md:hidden absolute top-10 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
@@ -345,7 +327,6 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                {/* Right Side (Image) */}
                 <div className="w-full md:w-1/2 pl-[80px] md:pl-14 mt-6 md:mt-0 flex items-center justify-start">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
@@ -365,9 +346,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* 2024 Timeline Item */}
             <div className="relative mb-20 flex w-full">
-              {/* Year Node */}
               <div className="absolute left-[44px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 flex justify-center items-center z-20">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -386,7 +365,6 @@ const Home = () => {
               </div>
 
               <div className="flex flex-col md:flex-row w-full items-stretch">
-                {/* Left Side (Image on Desktop) */}
                 <div className="hidden md:flex w-full md:w-1/2 pr-14 items-center justify-end">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -404,7 +382,6 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                {/* Right Side (Content) */}
                 <div className="w-full md:w-1/2 pl-[80px] md:pl-14 flex items-center justify-start">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
@@ -413,9 +390,7 @@ const Home = () => {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
-                    {/* Desktop Left pointing arrow */}
                     <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
-                    {/* Mobile Left pointing arrow */}
                     <div className="md:hidden absolute top-10 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
@@ -435,7 +410,6 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                {/* Mobile Image (Visible only on mobile) */}
                 <div className="flex md:hidden w-full pl-[80px] mt-6 items-center justify-start">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
@@ -455,9 +429,7 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Conclusion Timeline Item */}
             <div className="relative flex w-full">
-              {/* Node */}
               <div className="absolute left-[44px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 flex justify-center items-center z-20">
                 <motion.div
                   initial={{ scale: 0 }}
@@ -476,7 +448,6 @@ const Home = () => {
               </div>
 
               <div className="flex flex-col md:flex-row w-full items-stretch">
-                {/* Left Side (Content) */}
                 <div className="w-full md:w-1/2 pl-[80px] md:pl-0 md:pr-14 flex items-center justify-end">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -485,9 +456,7 @@ const Home = () => {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
-                    {/* Desktop Right pointing arrow */}
                     <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-4 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-white border-b-[12px] border-b-transparent drop-shadow-[3px_0_3px_rgba(0,0,0,0.03)]" />
-                    {/* Mobile Left pointing arrow */}
                     <div className="md:hidden absolute top-10 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
@@ -499,7 +468,6 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                {/* Right Side (Image or Empty Space) */}
                 <div className="w-full md:w-1/2 pl-[80px] md:pl-14 mt-6 md:mt-0 flex items-center justify-start">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
@@ -522,9 +490,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section / Milestone Section (Moved above Journey) */}
       <section className="bg-[#e77218] py-12 relative overflow-hidden">
-        {/* Subtle background decoration */}
         <div className="absolute inset-0 bg-white/5 pointer-events-none" />
         <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x md:divide-white/20 relative z-10 text-white">
           <div className="flex flex-col items-center justify-center text-center p-2 group">
@@ -617,10 +583,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Registration CTA Section */}
-      {/* Registration CTA Section (Full Width Hero) */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Parallax-like slow zoom */}
         <motion.div
           initial={{ scale: 1 }}
           whileInView={{ scale: 1.05 }}
@@ -629,13 +592,10 @@ const Home = () => {
           style={{ backgroundImage: "url('/timeline.jpg')" }}
         />
 
-        {/* Dark Vignette Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
 
-        {/* Festive Decorative overlay (dots/stars simulation, optional) */}
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#e77218]/40 via-transparent to-transparent pointer-events-none" />
 
-        {/* Content Container */}
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 w-full text-center flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

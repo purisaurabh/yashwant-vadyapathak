@@ -45,7 +45,6 @@ const ContactUs = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-[90px] pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,7 +65,6 @@ const ContactUs = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left Column: Contact Info & Form */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -74,7 +72,6 @@ const ContactUs = () => {
             viewport={{ once: true, amount: 0.1 }}
             className="lg:col-span-6 flex flex-col gap-8"
           >
-            {/* Reach Out Card */}
             <motion.div
               variants={itemVariants}
               className="bg-white rounded-2xl shadow-xl shadow-orange-900/5 p-8 border border-gray-100 relative overflow-hidden"
@@ -130,7 +127,6 @@ const ContactUs = () => {
                 ))}
               </div>
 
-              {/* Contact Form inserted right below Contact Information */}
               <div className="mt-12 pt-8 border-t border-gray-100">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
                   {t("Contact.SendMsg") || "Send us a Message"}
@@ -262,7 +258,6 @@ const ContactUs = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Map */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -270,7 +265,6 @@ const ContactUs = () => {
             viewport={{ once: true, amount: 0.1 }}
             className="lg:col-span-6 flex flex-col gap-8 h-full"
           >
-            {/* Google Map Embedded Map Placeholder */}
             <motion.div
               variants={itemVariants}
               className="w-full h-full min-h-[500px] bg-gray-200 rounded-3xl overflow-hidden shadow-lg border border-gray-100 relative group"
@@ -289,7 +283,6 @@ const ContactUs = () => {
         </div>
       </div>
 
-      {/* Success/Error Modal */}
       <AnimatePresence>
         {modalConfig.isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

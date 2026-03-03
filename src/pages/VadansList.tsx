@@ -52,7 +52,6 @@ const VadansList = () => {
   return (
     <div className="min-h-screen bg-gray-50 pt-[90px] pb-20 overflow-hidden">
       <div className="w-full max-w-[1920px] mx-auto px-4 md:px-8 lg:px-12">
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,7 +71,6 @@ const VadansList = () => {
           </p>
         </motion.div>
 
-        {/* Dynamic Card Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"

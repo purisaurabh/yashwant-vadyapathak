@@ -11,7 +11,6 @@ const OurJourney = () => {
 
   return (
     <div className="animate-fade-in">
-      {/* Hero Section - Saffron, white text (matches Home About Pathak style) */}
       <section className="min-h-[50vh] pt-[100px] pb-16 md:py-24 bg-gradient-to-b from-[#FF9933] to-[#e77218] relative overflow-hidden flex flex-col justify-center items-center">
         <img
           src="/drummer-left.svg"
@@ -41,7 +40,6 @@ const OurJourney = () => {
         </div>
       </section>
 
-      {/* Timeline Section - White & cream, saffron accents (matches Home History section) */}
       <section className="py-16 bg-gradient-to-b from-[#fffaf0] to-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[300px] bg-gradient-to-b from-[#FF9933]/5 to-transparent pointer-events-none" />
 
@@ -82,7 +80,6 @@ const OurJourney = () => {
               }}
             />
 
-            {/* 2023 - Oldest first */}
             <div className="relative mb-16 flex flex-col md:flex-row items-start w-full justify-between">
               <div className="order-1 md:order-1 w-full md:w-[45%]" />
               <div className="absolute left-[24px] md:left-1/2 top-8 md:top-8 -translate-x-1/2 w-[48px] h-[48px] flex justify-center items-center z-20">
@@ -156,7 +153,6 @@ const OurJourney = () => {
               </div>
             </div>
 
-            {/* 2024 */}
             <div className="relative mb-16 flex flex-col md:flex-row items-start w-full justify-between">
               <div className="order-2 md:order-1 w-full md:w-[45%] pl-[60px] md:pl-0 md:pr-10">
                 <motion.div
@@ -231,7 +227,6 @@ const OurJourney = () => {
               <div className="order-1 md:order-2 w-full md:w-[45%]" />
             </div>
 
-            {/* Conclusion */}
             <div className="relative flex flex-col md:flex-row items-start w-full justify-between">
               <div className="order-2 md:order-1 w-full md:w-[45%] pl-[60px] md:pl-0 md:pr-10">
                 <motion.div
@@ -285,7 +280,6 @@ const OurJourney = () => {
         </div>
       </section>
 
-      {/* CTA - White background, saffron button */}
       <section className="py-16 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 w-full text-center">
           <h2

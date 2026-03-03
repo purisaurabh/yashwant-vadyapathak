@@ -7,7 +7,6 @@ const MembersList = () => {
 
   return (
     <div className="animate-fade-in" style={{ paddingBottom: "100px" }}>
-      {/* Themed header section - matches Home timeline style */}
       <section className="pt-[90px] pb-14 bg-gradient-to-b from-[#fffaf0] to-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-[#e77218]/5 to-transparent pointer-events-none" />
         <motion.div
@@ -28,7 +27,6 @@ const MembersList = () => {
         </motion.div>
       </section>
 
-      {/* Stats Section */}
       <div className="max-w-[1100px] mx-auto px-4 relative z-20 -mt-12 mb-20 lg:-mt-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {[
@@ -106,7 +104,6 @@ const MembersList = () => {
           backgroundColor: "var(--bg-main)",
         }}
       >
-        {/* 1. Special Thanks - विशेष आभार */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -208,7 +205,6 @@ const MembersList = () => {
           </div>
         </motion.div>
 
-        {/* 2. Executive Members - कार्यकारिणी सदस्य */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -342,7 +338,6 @@ const MembersList = () => {
           </div>
         </motion.div>
 
-        {/* 3. Invaluable Cooperation - मोलाचे सहकार्य */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -95,7 +95,6 @@ const Gallery = () => {
     <>
       <div className="min-h-screen bg-gray-50 pt-[90px] pb-20 overflow-hidden">
         <div className="w-full max-w-[1920px] mx-auto px-4 md:px-8 lg:px-12">
-          {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,7 +113,6 @@ const Gallery = () => {
             </p>
           </motion.div>
 
-          {/* Instagram style varied grid layout */}
           <div className="grid grid-cols-1 md:grid-cols-10 gap-3 md:gap-5">
             {mediaItems.map((item, idx) => {
               let spanClass = "md:col-span-3";
@@ -158,10 +156,8 @@ const Gallery = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
 
-                  {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
 
-                  {/* Video icon indicator */}
                   {item.type === "video" && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                       <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm group-hover:bg-black/50 transition-colors border border-white/20 shadow-lg">

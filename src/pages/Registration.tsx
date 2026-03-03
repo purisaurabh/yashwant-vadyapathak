@@ -55,7 +55,6 @@ const Registration = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left Column: Rules and Regulations */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -104,7 +103,6 @@ const Registration = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Registration Form */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -321,7 +319,6 @@ const Registration = () => {
         </div>
       </div>
 
-      {/* Success/Error Modal */}
       <AnimatePresence>
         {modalConfig.isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

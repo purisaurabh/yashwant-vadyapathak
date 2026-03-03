@@ -92,7 +92,6 @@ const SocialActivities = () => {
         </motion.div>
 
         <div className="flex flex-col gap-16 md:gap-24 w-full p-2 py-4 mt-8 relative">
-          {/* Subtle connecting line in the background for desktop */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#e77218]/10 via-[#e77218]/20 to-transparent -translate-x-1/2 z-0 rounded-full" />
 
           {activities.map((activity, idx) => (
@@ -109,7 +108,6 @@ const SocialActivities = () => {
               }}
               className="relative flex flex-col md:flex-row items-center justify-center w-full group"
             >
-              {/* Image Section */}
               <div
                 className={`w-full md:w-[60%] lg:w-[55%] overflow-hidden rounded-[2rem] shadow-xl md:shadow-2xl relative z-10 border-4 border-white flex-shrink-0 ${
                   idx % 2 === 0 ? "md:order-1" : "md:order-2"
@@ -130,7 +128,6 @@ const SocialActivities = () => {
                 />
               </div>
 
-              {/* Text Section */}
               <div
                 className={`w-[92%] md:w-[55%] lg:w-[55%] bg-white rounded-[2rem] shadow-[0_15px_40px_rgba(0,0,0,0.12)] p-8 lg:p-12 relative z-20 md:mt-0 -mt-16 border border-gray-100/50 backdrop-blur-sm ${
                   idx % 2 === 0
@@ -138,7 +135,6 @@ const SocialActivities = () => {
                     : "md:order-1 md:-mr-16 lg:-mr-24 xl:-mr-32"
                 }`}
               >
-                {/* Giant Number Watermark */}
                 <div
                   className={`absolute -top-6 md:-top-12 ${
                     idx % 2 === 0
@@ -151,7 +147,6 @@ const SocialActivities = () => {
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-5">
-                    {/* Number Badge */}
                     <div className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-[#e77218] to-[#c75e0e] text-white font-extrabold text-xl md:text-2xl shadow-[0_4px_15px_rgba(231,114,24,0.4)] shrink-0 border-2 border-white">
                       {toLocalNumbers(idx + 1)}
                     </div>

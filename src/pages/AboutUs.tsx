@@ -117,7 +117,6 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-[90px] pb-20 overflow-hidden font-sans">
-      {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -140,7 +139,7 @@ const AboutUs = () => {
         </motion.div>
       </div>
 
-      {/* Stats Strip */}
+
       <section className="relative z-20 -mt-10 px-6">
         <div className="max-w-[1200px] mx-auto">
           <motion.div
@@ -170,7 +169,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Mission & Vision Section */}
       <section className="py-12 px-6 relative z-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
@@ -207,7 +205,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Values Framework grid */}
       <section className="pb-12 px-6 relative z-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center mb-12 relative">
@@ -241,7 +238,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Detailed History Timeline Setup */}
       <section className="py-12 bg-white/50 px-6 relative z-10">
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="text-center mb-16 max-w-3xl mx-auto">
@@ -255,7 +251,6 @@ const AboutUs = () => {
           </div>
 
           <div className="relative">
-            {/* Vertical Line */}
             <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/20 via-primary to-primary/20 md:-translate-x-1/2 rounded-full" />
 
             {[
@@ -291,7 +286,6 @@ const AboutUs = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 mb-20 ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
               >
-                {/* Timeline Dot */}
                 <div className="absolute left-6 md:left-1/2 w-6 h-6 bg-white border-4 border-primary rounded-full -translate-x-1/2 z-20 shadow-[0_0_15px_rgba(217,119,6,0.3)]" />
 
                 <div
@@ -326,9 +320,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Enormous Instruments Showcase */}
       <section className="py-12 bg-white/50 px-6 relative overflow-hidden z-10">
-        {/* Decorative ambient background */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] mix-blend-multiply pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto">
@@ -387,7 +379,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Core Members Mini-Preview */}
       <section className="py-12 px-6 relative z-10 bg-white">
         <div className="max-w-[1200px] mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-[clamp(1.75rem,3vw,2.5rem)] font-extrabold text-primary tracking-wide mb-4 drop-shadow-sm">
