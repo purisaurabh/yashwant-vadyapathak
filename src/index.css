@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+/* Custom theme so utilities like bg-primary, text-bg-main, font-sans work */
+@theme {
+  --font-sans:
+    "Tiro Devanagari Marathi", Outfit, "Noto Sans Devanagari", Mukta, Poppins,
+    sans-serif;
+  --color-primary: #d97706;
+  --color-primary-dark: #b86205;
+  --color-saffron: #ff9933;
+  --color-bg-main: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-text-main: #1f2937;
+  --color-text-muted: #6b7280;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    font-family:
+      "Tiro Devanagari Marathi", Outfit, "Noto Sans Devanagari", Mukta, Poppins,
+      sans-serif;
+    background-color: #ffffff;
+    color: #1f2937;
+    line-height: 1.625;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #root::-webkit-scrollbar {
+    display: none;
+  }
+
+  main {
+    flex: 1 1 0%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font: inherit;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
