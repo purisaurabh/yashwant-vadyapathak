@@ -111,8 +111,7 @@ const ContactUs = () => {
                     icon: Mail,
                     title: t("Contact.Email") || "Email Address",
                     detail:
-                      import.meta.env.VITE_CONTACT_EMAIL ||
-                      "yashwant.dholtasha@gmail.com",
+                      import.meta.env.VITE_CONTACT_EMAIL
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex items-start gap-4 group">
@@ -155,9 +154,7 @@ const ContactUs = () => {
                     );
 
                     try {
-                      const email =
-                        import.meta.env.VITE_CONTACT_EMAIL ||
-                        "yashwant.dholtasha@gmail.com";
+                      const email = import.meta.env.VITE_CONTACT_EMAIL;
                       const response = await fetch(
                         `https://formsubmit.co/ajax/${email}`,
                         {

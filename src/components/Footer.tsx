@@ -162,11 +162,10 @@ const Footer = () => {
                 <Mail size={18} strokeWidth={2} />
               </div>
               <a
-                href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL || "yashwant.dholtasha@gmail.com"}`}
+                href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}
                 className="hover:text-white transition-all duration-300 flex-1 whitespace-nowrap"
               >
-                {import.meta.env.VITE_CONTACT_EMAIL ||
-                  "yashwant.dholtasha@gmail.com"}
+                {import.meta.env.VITE_CONTACT_EMAIL}
               </a>
             </li>
           </ul>

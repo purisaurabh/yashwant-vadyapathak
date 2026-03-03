@@ -14,7 +14,7 @@ import OurJourney from "./pages/OurJourney";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/yashwant-vadyapathak/">
       <ScrollToTop />
       <Navbar />
       <main>
