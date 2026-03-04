@@ -1,8 +1,119 @@
 import { useTranslation } from "react-i18next";
-import { AlertCircle, UserPlus, CheckCircle2, X } from "lucide-react";
+import {
+  AlertCircle,
+  UserPlus,
+  CheckCircle2,
+  X,
+  ChevronDown,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+const CustomSelect = ({
+  name,
+  options,
+  placeholder,
+  required,
+}: {
+  name: string;
+  options: { label: string; value: string }[];
+  placeholder: string;
+  required?: boolean;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const selectedLabel =
+    options.find((opt) => opt.value === selected)?.label || placeholder;
+
+  return (
+    <div className="relative w-full" ref={dropdownRef}>
+      <select
+        name={name}
+        value={selected}
+        onChange={(e) => setSelected(e.target.value)}
+        required={required}
+        className="absolute bottom-1/2 left-1/2 -z-10 w-1 h-1 opacity-0 pointer-events-none"
+        tabIndex={-1}
+      >
+        <option value="" disabled></option>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full px-4 py-3 rounded-xl border border-gray-200 transition-all outline-none bg-gray-50/50 cursor-pointer flex justify-between items-center ${
+          isOpen
+            ? "ring-2 ring-primary/20 border-primary"
+            : "focus:ring-2 focus:ring-primary/20 focus:border-primary"
+        }`}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsOpen(!isOpen);
+          }
+        }}
+      >
+        <span className={selected ? "text-gray-900" : "text-gray-500"}>
+          {selectedLabel}
+        </span>
+        <ChevronDown
+          className={`text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          size={20}
+        />
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto"
+          >
+            {options.map((option) => (
+              <div
+                key={option.value}
+                onClick={() => {
+                  setSelected(option.value);
+                  setIsOpen(false);
+                }}
+                className={`px-4 py-3 cursor-pointer transition-colors ${
+                  selected === option.value
+                    ? "bg-primary text-white font-medium"
+                    : "text-gray-700 hover:bg-primary hover:text-white"
+                }`}
+              >
+                {option.label}
+              </div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Registration = () => {
   const { t, i18n } = useTranslation();
@@ -141,24 +252,36 @@ const Registration = () => {
                   const GOOGLE_SCRIPT_URL = import.meta.env
                     .VITE_REGISTRATION_SCRIPT_URL;
                   try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
+                    const response = await fetch(GOOGLE_SCRIPT_URL, {
                       method: "POST",
-                      mode: "no-cors",
                       headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                       },
                       body: searchParams.toString(),
                     });
 
-                    setModalConfig({
-                      isOpen: true,
-                      success: true,
-                      message: isMarathi
-                        ? "नोंदणी यशस्वीरित्या पूर्ण झाली!"
-                        : "Registration submitted successfully!",
-                    });
+                    const result = await response.json();
+                    console.log("Result", result);
 
-                    form.reset();
+                    if (result.status === "duplicate") {
+                      setModalConfig({
+                        isOpen: true,
+                        success: false,
+                        message: isMarathi
+                          ? "हा मोबाईल नंबर आधीच नोंदणीकृत आहे. कृपया दुसरा मोबाईल नंबर वापरा."
+                          : "You have already submitted the form with this phone number. Please use a different phone number.",
+                      });
+                    } else {
+                      setModalConfig({
+                        isOpen: true,
+                        success: true,
+                        message: isMarathi
+                          ? "नोंदणी यशस्वीरित्या पूर्ण झाली! आम्ही लवकरच आपल्याशी संपर्क साधू."
+                          : "Registration submitted successfully! We will get in touch with you soon.",
+                      });
+
+                      form.reset();
+                    }
                   } catch (error) {
                     console.error("Form submission error:", error);
 
@@ -177,12 +300,16 @@ const Registration = () => {
               >
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700">
-                    {t("Registration.FullName")}
+                    {t("Registration.FullName")}{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     name="fullName"
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none bg-gray-50/50"
+                    placeholder={
+                      isMarathi ? "पहिले नाव, आडनाव" : "First Name, Last Name"
+                    }
                     required
                   />
                 </div>
@@ -190,7 +317,8 @@ const Registration = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      {t("Registration.Age")}
+                      {t("Registration.Age")}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="number"
@@ -198,6 +326,7 @@ const Registration = () => {
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none bg-gray-50/50"
                       min="1"
                       max="120"
+                      placeholder={isMarathi ? "उदा. १८" : "e.g. 18"}
                       required
                       onInput={(e) => {
                         e.currentTarget.value = e.currentTarget.value.replace(
@@ -211,30 +340,29 @@ const Registration = () => {
                       }}
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 relative z-50">
                     <label className="text-sm font-semibold text-gray-700">
-                      {t("Registration.Gender")}
+                      {t("Registration.Gender")}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      defaultValue=""
+                    <CustomSelect
                       name="gender"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none bg-gray-50/50 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-size-[1em] bg-position-[right_1rem_center] bg-no-repeat"
-                    >
-                      <option value="" disabled>
-                        Select Gender / लिंग निवडा
-                      </option>
-                      <option value="Male">{t("Registration.Male")}</option>
-                      <option value="Female">{t("Registration.Female")}</option>
-                      <option value="Other">{t("Registration.Other")}</option>
-                    </select>
+                      placeholder={isMarathi ? "लिंग निवडा" : "Select Gender"}
+                      options={[
+                        { label: t("Registration.Male"), value: "Male" },
+                        { label: t("Registration.Female"), value: "Female" },
+                        { label: t("Registration.Other"), value: "Other" },
+                      ]}
+                    />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-gray-700">
-                      {t("Registration.Phone")}
+                      {t("Registration.Phone")}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <div className="relative flex items-center">
                       <span className="absolute left-4 text-gray-500 font-semibold border-r border-gray-200 pr-3">
@@ -263,24 +391,24 @@ const Registration = () => {
                       />
                     </div>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 relative z-40">
                     <label className="text-sm font-semibold text-gray-700">
-                      {t("Registration.Instrument")}
+                      {t("Registration.Instrument")}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
-                    <select
-                      defaultValue=""
+                    <CustomSelect
                       name="instrument"
                       required
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none bg-gray-50/50 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-size-[1em] bg-position-[right_1rem_center] bg-no-repeat"
-                    >
-                      <option value="" disabled>
-                        Select Instrument / वाद्य निवडा
-                      </option>
-                      <option value="Dhol">Dhol / ढोल</option>
-                      <option value="Tasha">Tasha / ताशा</option>
-                      <option value="Dhwaj">Dhwaj / ध्वज</option>
-                      <option value="Zanj">Zanj / झांज</option>
-                    </select>
+                      placeholder={
+                        isMarathi ? "वाद्य निवडा" : "Select Instrument"
+                      }
+                      options={[
+                        { label: isMarathi ? "ढोल" : "Dhol", value: "Dhol" },
+                        { label: isMarathi ? "ताशा" : "Tasha", value: "Tasha" },
+                        { label: isMarathi ? "ध्वज" : "Dhwaj", value: "Dhwaj" },
+                        { label: isMarathi ? "झांज" : "Zanj", value: "Zanj" },
+                      ]}
+                    />
                   </div>
                 </div>
 

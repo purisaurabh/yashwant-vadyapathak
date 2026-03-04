@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import {
   Facebook,
   Instagram,
-  Twitter,
+  Youtube,
   Mail,
   MapPin,
   Phone,
@@ -190,10 +190,12 @@ const Footer = () => {
               <Instagram size={18} />
             </a>
             <a
-              href="#"
+              href="https://www.youtube.com/@yashwantvadyapathak"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all duration-300 transform hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
             >
-              <Twitter size={18} fill="currentColor" className="stroke-none" />
+              <Youtube size={18} />
             </a>
           </div>
         </div>

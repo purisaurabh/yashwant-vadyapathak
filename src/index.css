@@ -104,6 +104,12 @@
     background: transparent;
     font: inherit;
   }
+
+  select option:checked,
+  select option:hover {
+    background-color: #d97706 !important;
+    color: #ffffff !important;
+  }
 }
 
 @layer utilities {
