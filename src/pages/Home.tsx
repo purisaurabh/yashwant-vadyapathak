@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import type { TouchEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -8,6 +9,34 @@ import CountUp from "react-countup";
 const Home = () => {
   const { t, i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e: TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    } else if (isRightSwipe) {
+      setCurrentSlide((prev) =>
+        prev === 0 ? carouselImages.length - 1 : prev - 1,
+      );
+    }
+  };
 
   const isMarathi = i18n.language === "mr";
 
@@ -64,8 +93,12 @@ const Home = () => {
 
   return (
     <div className="animate-fade-in">
-    
-      <section className="min-h-[100dvh] h-[100dvh] relative overflow-hidden pt-0 mt-0 mb-0">
+      <section
+        className="min-h-[100dvh] h-[100dvh] relative overflow-hidden pt-0 mt-0 mb-0"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="relative w-full h-full overflow-hidden">
           {carouselImages.map((img, index) => (
             <div
