@@ -91,15 +91,6 @@ const Footer = () => {
           <ul className="space-y-4 font-['Tiro_Devanagari_Marathi',serif] font-normal tracking-wide text-[16px] md:text-[16px] mt-2">
             <li>
               <NavLink
-                to="/members"
-                className="flex items-center text-white/90 hover:text-white transition-all duration-300 group"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-white/50 group-hover:bg-white mr-3 group-hover:scale-125 transition-all shrink-0" />
-                {t("Nav.Members")}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/registration"
                 className="flex items-center text-white/90 hover:text-white transition-all duration-300 group"
               >

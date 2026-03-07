@@ -245,6 +245,12 @@ const resources = {
         "PhoneStr": "+91 9921773172, +91 7972269030",
         "SocialMedia": "Social Media",
         "Rights": "Yashwant Vadypathak. All rights reserved."
+      },
+      "NotFound": {
+        "Title": "404",
+        "Subtitle": "Page Not Found",
+        "Desc": "The page you are looking for does not exist or has been moved.",
+        "BackHome": "Back to Home"
       }
     }
   },
@@ -491,6 +497,12 @@ const resources = {
         "PhoneStr": "+९१ ९९२१७७३१७२, +९१ ७९७२२६९०३०",
         "SocialMedia": "सोशल मीडिया",
         "Rights": "यशवंत वाद्यपथक. सर्व हक्क राखीव."
+      },
+      "NotFound": {
+        "Title": "४०४",
+        "Subtitle": "पृष्ठ सापडले नाही",
+        "Desc": "तुम्ही शोधत असलेले पृष्ठ अस्तित्वात नाही किंवा हलविले गेले आहे.",
+        "BackHome": "मुख्यपृष्ठावर परत जा"
       }
     }
   }

@@ -139,7 +139,6 @@ const AboutUs = () => {
         </motion.div>
       </div>
 
-
       <section className="relative z-20 -mt-10 px-6">
         <div className="max-w-[1200px] mx-auto">
           <motion.div
@@ -379,44 +378,71 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="py-12 px-6 relative z-10 bg-white">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-[clamp(1.75rem,3vw,2.5rem)] font-extrabold text-primary tracking-wide mb-4 drop-shadow-sm">
-            {t("About.CoreMembers")}
-          </h2>
-          <div className="w-24 border-t-4 border-primary mx-auto rounded-full shadow-[0_2px_4px_rgba(217,119,6,0.3)] mb-8" />
-          <p className="text-[15px] md:text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            {t("About.LeaderDesc")}
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[1, 2, 3].map((num) => (
-              <motion.div
-                key={num}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: num * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group text-center bg-slate-50 rounded-[2rem] p-8 hover:bg-white hover:shadow-[0_15px_40px_rgba(217,119,6,0.15)] transition-all duration-300 border border-gray-100"
-              >
-                <div className="w-[140px] h-[140px] rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg relative mx-auto group-hover:scale-105 transition-transform duration-300">
-                  <img
-                    src={`https://i.pravatar.cc/300?img=${num + 10}`}
-                    alt={`Leader ${num}`}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300 pointer-events-none" />
-                </div>
-                <h3 className="text-2xl font-bold text-text-main mb-2 group-hover:text-primary transition-colors">
-                  {isMarathi ? `यशवंत ${num}` : `Yashwant ${num}`}
+      <section className="py-12 px-6 relative z-10">
+        <div className="max-w-[1200px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-24"
+          >
+            <h2 className="text-center text-primary mb-12 text-[2.5rem] font-bold">
+              {t("Members.SpecialThanksTitle")}
+            </h2>
+            <div className="flex flex-col md:flex-row bg-gray-50 rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+              <div className="flex-1 bg-[#a6b0c6] flex justify-center items-end pt-8">
+                <img
+                  src="/members/1.jpg"
+                  alt={t("Members.SarveshName")}
+                  className="w-full object-contain max-h-[500px] object-bottom"
+                />
+              </div>
+              <div className="flex-[1.2] p-12 flex flex-col justify-center">
+                <h3 className="text-[1.75rem] font-semibold mb-6 text-gray-800">
+                  {t("Members.SarveshName")}
                 </h3>
-                <span className="inline-block px-3 py-1 bg-orange-50 text-primary-dark font-semibold text-sm rounded-full">
-                  {t("About.PresidentText")}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+                <p className="mb-5 text-gray-600 leading-relaxed text-justify">
+                  {t("Members.SarveshDesc1")}
+                </p>
+                <p className="mb-5 text-gray-600 leading-relaxed text-justify">
+                  {t("Members.SarveshDesc2")}
+                </p>
+                <p className="text-gray-600 leading-relaxed text-justify">
+                  {t("Members.SarveshDesc3")}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-4"
+          >
+            <h2 className="text-center text-primary mb-12 text-[2.5rem] font-bold">
+              {t("Members.CooperationTitle")}
+            </h2>
+            <div className="flex flex-col md:flex-row-reverse bg-gray-50 rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+              <div className="flex-1 flex">
+                <img
+                  src="/members/8.jpg"
+                  alt={t("Members.CooperationTitle")}
+                  className="w-full h-full object-cover min-h-[350px]"
+                />
+              </div>
+              <div className="flex-[1.2] p-12 flex flex-col justify-center">
+                <p className="mb-6 text-gray-600 leading-[1.9] text-justify text-[1.05rem]">
+                  {t("Members.CooperationDesc1")}
+                </p>
+                <p className="text-gray-600 leading-[1.9] text-justify font-semibold text-[1.05rem]">
+                  {t("Members.CooperationDesc2")}
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

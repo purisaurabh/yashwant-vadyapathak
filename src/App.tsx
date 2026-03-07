@@ -7,10 +7,10 @@ import AboutUs from "./pages/AboutUs";
 import SocialActivities from "./pages/SocialActivities";
 import VadansList from "./pages/VadansList";
 import Gallery from "./pages/Gallery";
-import MembersList from "./pages/MembersList";
 import ContactUs from "./pages/ContactUs";
 import Registration from "./pages/Registration";
 import OurJourney from "./pages/OurJourney";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -25,9 +25,9 @@ function App() {
           <Route path="/social-activities" element={<SocialActivities />} />
           <Route path="/vadans" element={<VadansList />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/members" element={<MembersList />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
