@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { motion, animate, useInView } from "framer-motion";
+import { motion, animate, useInView, useScroll } from "framer-motion";
 import { useRef, useEffect } from "react";
 import {
   Target,
@@ -62,6 +62,11 @@ const AnimatedCounter = ({
 
 const AboutUs = () => {
   const { t, i18n } = useTranslation();
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end 80%"],
+  });
   const isMarathi = i18n.language === "mr";
 
   const instruments = [
@@ -249,8 +254,11 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="relative">
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/20 via-primary to-primary/20 md:-translate-x-1/2 rounded-full" />
+          <div ref={timelineRef} className="relative">
+            <motion.div
+              style={{ scaleY: scrollYProgress, transformOrigin: "top" }}
+              className="absolute left-1/2 -translate-x-1/2 top-4 bottom-0 w-1 bg-gradient-to-b from-primary/20 via-primary to-primary/20 rounded-full"
+            />
 
             {[
               {
@@ -283,28 +291,30 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 mb-20 ${i % 2 !== 0 ? "md:flex-row-reverse" : ""}`}
+                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 mb-20 ${i % 2 !== 0 ? "md:flex-row-reverse" : ""} pt-[40px] md:pt-0`}
               >
-                <div className="absolute left-6 md:left-1/2 w-6 h-6 bg-white border-4 border-primary rounded-full -translate-x-1/2 z-20 shadow-[0_0_15px_rgba(217,119,6,0.3)]" />
+                <div className="absolute left-1/2 top-0 md:top-1/2 -translate-y-0 md:-translate-y-1/2 w-6 h-6 bg-white border-4 border-primary rounded-full -translate-x-1/2 z-20 shadow-[0_0_15px_rgba(217,119,6,0.3)]" />
 
                 <div
-                  className={`w-full md:w-1/2 pl-16 md:pl-0 group ${i % 2 !== 0 ? "md:text-left" : "md:text-right"}`}
+                  className={`w-full md:w-1/2 px-0 md:px-0 group ${i % 2 !== 0 ? "md:text-left" : "md:text-right"} order-2 md:order-none`}
                 >
-                  <div className="inline-block px-4 py-2 bg-primary/10 text-primary font-bold rounded-full mb-4 md:text-lg border border-primary/20">
-                    {item.year}
+                  <div className="bg-white/95 md:bg-transparent p-5 md:p-0 rounded-2xl md:rounded-none relative z-10 shadow-sm md:shadow-none border border-orange-50 md:border-transparent backdrop-blur-sm md:backdrop-blur-none">
+                    <div className="inline-block px-4 py-2 bg-primary/10 text-primary font-bold rounded-full mb-4 md:text-lg border border-primary/20">
+                      {item.year}
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    <p
+                      className={`text-gray-600 text-[15px] md:text-lg leading-relaxed text-justify ${i % 2 !== 0 ? "md:text-left" : "md:text-right"}`}
+                    >
+                      {item.desc}
+                    </p>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-text-main mb-3 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  <p
-                    className={`text-gray-600 text-[15px] md:text-lg leading-relaxed text-justify ${i % 2 !== 0 ? "md:text-left" : "md:text-right"}`}
-                  >
-                    {item.desc}
-                  </p>
                 </div>
 
-                <div className="w-full md:w-1/2 pl-16 md:pl-0">
-                  <div className="rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative aspect-[4/3] group cursor-pointer border border-gray-100">
+                <div className="w-full md:w-1/2 px-0 md:px-0 order-1 md:order-none">
+                  <div className="rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] relative z-10 bg-white aspect-[4/3] group cursor-pointer border border-gray-100">
                     <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
                     <img
                       src={item.img}

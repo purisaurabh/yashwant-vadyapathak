@@ -1,13 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type { TouchEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Users, History, PlayCircle, Music } from "lucide-react";
 import CountUp from "react-countup";
 
 const Home = () => {
   const { t, i18n } = useTranslation();
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end 80%"],
+  });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -455,11 +460,17 @@ const Home = () => {
             <div className="mx-auto w-16 border-t-4 border-[#e77218] rounded-full shadow-[0_2px_4px_rgba(231,114,24,0.3)] mb-4" />
           </motion.div>
 
-          <div className="relative max-w-[1300px] mx-auto pb-16 px-4 md:px-0">
-            <div className="absolute left-[44px] md:left-1/2 md:-translate-x-1/2 top-4 bottom-0 w-1 bg-gradient-to-b from-[#e77218] via-[#e77218] to-transparent rounded-full shadow-[0_0_10px_rgba(231,114,24,0.3)] z-0" />
+          <div
+            ref={timelineRef}
+            className="relative max-w-[1300px] mx-auto pb-16 px-1.5 md:px-0"
+          >
+            <motion.div
+              style={{ scaleY: scrollYProgress, transformOrigin: "top" }}
+              className="absolute left-1/2 -translate-x-1/2 top-4 bottom-0 w-1 bg-gradient-to-b from-[#e77218] via-[#e77218] to-transparent rounded-full shadow-[0_0_10px_rgba(231,114,24,0.3)] z-0"
+            />
 
-            <div className="relative mb-20 flex w-full">
-              <div className="absolute left-[44px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 flex justify-center items-center z-20">
+            <div className="relative mb-20 flex w-full pt-[60px] md:pt-0">
+              <div className="absolute left-1/2 top-0 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-14 h-14 flex justify-center items-center z-20">
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -476,17 +487,17 @@ const Home = () => {
                 </motion.div>
               </div>
 
-              <div className="flex flex-col md:flex-row w-full items-stretch">
-                <div className="w-full md:w-1/2 pl-[80px] md:pl-0 md:pr-14 flex items-center justify-end">
+              <div className="flex flex-col md:flex-row w-full items-stretch relative z-10">
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pr-14 flex items-center justify-center md:justify-end order-2 md:order-1 mt-8 md:mt-0">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
+                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-4 sm:p-5 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
                     <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-4 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-white border-b-[12px] border-b-transparent drop-shadow-[3px_0_3px_rgba(0,0,0,0.03)]" />
-                    <div className="md:hidden absolute top-10 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
+                    <div className="md:hidden absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-b-[12px] border-b-white border-r-[16px] border-r-transparent drop-shadow-[0_-3px_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
                       {t("Home.History2023")}
@@ -505,7 +516,7 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                <div className="w-full md:w-1/2 pl-[80px] md:pl-14 mt-6 md:mt-0 flex items-center justify-start">
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pl-14 flex items-center justify-center md:justify-start order-1 md:order-2">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -524,8 +535,8 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="relative mb-20 flex w-full">
-              <div className="absolute left-[44px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 flex justify-center items-center z-20">
+            <div className="relative mb-20 flex w-full pt-[60px] md:pt-0">
+              <div className="absolute left-1/2 top-0 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-14 h-14 flex justify-center items-center z-20">
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -542,7 +553,7 @@ const Home = () => {
                 </motion.div>
               </div>
 
-              <div className="flex flex-col md:flex-row w-full items-stretch">
+              <div className="flex flex-col md:flex-row w-full items-stretch relative z-10">
                 <div className="hidden md:flex w-full md:w-1/2 pr-14 items-center justify-end">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
@@ -560,16 +571,16 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                <div className="w-full md:w-1/2 pl-[80px] md:pl-14 flex items-center justify-start">
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pl-14 flex items-center justify-center md:justify-start order-2 md:order-none mt-8 md:mt-0">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
+                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-4 sm:p-5 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
                     <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
-                    <div className="md:hidden absolute top-10 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
+                    <div className="md:hidden absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-b-[12px] border-b-white border-r-[16px] border-r-transparent drop-shadow-[0_-3px_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
                       {t("Home.History2024")}
@@ -588,7 +599,7 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                <div className="flex md:hidden w-full pl-[80px] mt-6 items-center justify-start">
+                <div className="flex md:hidden w-full px-0 items-center justify-center order-1">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -607,8 +618,8 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="relative flex w-full">
-              <div className="absolute left-[44px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 w-14 h-14 flex justify-center items-center z-20">
+            <div className="relative flex w-full pt-[60px] md:pt-0">
+              <div className="absolute left-1/2 top-0 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-14 h-14 flex justify-center items-center z-20">
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
@@ -625,17 +636,17 @@ const Home = () => {
                 </motion.div>
               </div>
 
-              <div className="flex flex-col md:flex-row w-full items-stretch">
-                <div className="w-full md:w-1/2 pl-[80px] md:pl-0 md:pr-14 flex items-center justify-end">
+              <div className="flex flex-col md:flex-row w-full items-stretch relative z-10">
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pr-14 flex items-center justify-center md:justify-end order-2 md:order-1 mt-8 md:mt-0">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-6 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
+                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-4 sm:p-5 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
                     <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-4 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-white border-b-[12px] border-b-transparent drop-shadow-[3px_0_3px_rgba(0,0,0,0.03)]" />
-                    <div className="md:hidden absolute top-10 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
+                    <div className="md:hidden absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-b-[12px] border-b-white border-r-[16px] border-r-transparent drop-shadow-[0_-3px_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
                       {t("Home.HistoryConclusion")}
@@ -646,7 +657,7 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                <div className="w-full md:w-1/2 pl-[80px] md:pl-14 mt-6 md:mt-0 flex items-center justify-start">
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pl-14 flex items-center justify-center md:justify-start order-1 md:order-2">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
