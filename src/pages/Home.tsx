@@ -81,6 +81,26 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    // Disable native scroll restoration by the browser
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    // Force flush scroll multiple times to beat browser quirks and React router hash jumps
+    window.scrollTo(0, 0);
+    const timeoutId = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 10);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "auto";
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
     }, 5000);
@@ -94,12 +114,13 @@ const Home = () => {
   return (
     <div className="animate-fade-in">
       <section
-        className="min-h-[100dvh] h-[100dvh] relative overflow-hidden pt-0 mt-0 mb-0"
+        className="w-full relative overflow-hidden bg-black"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="relative w-full h-full overflow-hidden">
+        {/* DESKTOP HERO LAYOUT */}
+        <div className="hidden md:block relative w-full h-dvh overflow-hidden">
           {carouselImages.map((img, index) => (
             <div
               key={index}
@@ -115,34 +136,62 @@ const Home = () => {
           ))}
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/40 to-black/60 z-[2]" />
 
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3] text-center w-full px-4 sm:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              <div className="mx-auto mb-3 w-full max-w-2xl border-t-2 border-[#FF9933] border-dashed opacity-80" />
-              <h1 className="text-[clamp(1.5rem,4vw,3.25rem)] sm:text-[clamp(1.75rem,4.5vw,3.75rem)] font-extrabold leading-tight tracking-wide text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
-                {t("Home.CarouselTagline")
-                  .split(" | ")
-                  .map((part, index, array) => (
-                    <span key={index}>
-                      {part}
-                      {index < array.length - 1 && (
-                        <span className="whitespace-nowrap">
-                          <span className="hidden sm:inline"> | </span>
-                          <span className="sm:hidden">
-                            {" "}
-                            |<br />
-                          </span>
-                        </span>
-                      )}
-                    </span>
-                  ))}
-              </h1>
-              <div className="mx-auto mt-3 w-full max-w-2xl border-t-2 border-[#FF9933] border-dashed opacity-80" />
-            </motion.div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3] text-center w-full px-6">
+            <div className="flex flex-col items-center justify-center w-full max-w-[95vw] lg:max-w-6xl mx-auto">
+              <div className="grid grid-cols-[1fr_auto_1fr] md:gap-x-4 gap-y-8 md:gap-y-10 items-center justify-center w-full">
+                {/* Text section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-right justify-self-end text-[clamp(1.6rem,3.8vw,3.75rem)] font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] tracking-wide whitespace-nowrap"
+                >
+                  {t("Home.CarouselTagline").split(" | ")[0]}
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-center justify-self-center text-[clamp(1.6rem,3.8vw,3.75rem)] font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] mx-4 md:mx-6"
+                >
+                  |
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-left justify-self-start text-[clamp(1.6rem,3.8vw,3.75rem)] font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] tracking-wide whitespace-nowrap"
+                >
+                  {t("Home.CarouselTagline").split(" | ")[1]}
+                </motion.div>
+
+                {/* Buttons section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.9,
+                    delay: 0.3,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="col-span-3 flex items-center justify-center gap-4 md:gap-5"
+                >
+                  <Link
+                    to="/about"
+                    className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/50 hover:border-white text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg hover:-translate-y-1"
+                  >
+                    {t("Nav.About")}
+                  </Link>
+
+                  <Link
+                    to="/registration"
+                    className="inline-block px-8 py-3 bg-[#e77218] hover:bg-[#d56612] text-white text-lg font-bold rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(231,114,24,0.5)] hover:shadow-[0_0_25px_rgba(231,114,24,0.7)] hover:-translate-y-1"
+                  >
+                    {t("Nav.Register")}
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
           </div>
 
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[4] flex gap-3">
@@ -162,6 +211,102 @@ const Home = () => {
               />
             ))}
           </div>
+        </div>
+
+        {/* MOBILE HERO LAYOUT */}
+        <div
+          className="md:hidden flex flex-col w-full bg-gradient-to-b from-[#ffffff] to-[#faf9f8] pt-[70px] relative overflow-hidden"
+          style={{ height: "100dvh", minHeight: "100dvh", maxHeight: "100dvh" }}
+        >
+          {/* Subtle Ambient Glow */}
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[30%] bg-[#FF9933]/10 rounded-full blur-[80px] pointer-events-none" />
+          <div className="absolute top-[20%] right-[-10%] w-[50%] h-[30%] bg-[#FF9933]/5 rounded-full blur-[60px] pointer-events-none" />
+
+          <div className="flex flex-col items-center justify-center px-4 pt-1 pb-4 w-full text-center z-10 flex-shrink-0 relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="w-full flex justify-center mb-1"
+            >
+              <img
+                src="/logo.png"
+                alt="Yashwant Pathak Logo"
+                className="w-[95%] max-w-[340px] transform scale-110 object-contain drop-shadow-sm"
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+              className="relative w-full max-w-[340px] mb-6 mt-1"
+            >
+              <h1 className="text-[15px] sm:text-[17px] font-medium leading-tight text-gray-600 tracking-wide">
+                {t("Home.CarouselTagline")}
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
+              className="flex flex-row items-center justify-center gap-3 w-full px-2 max-w-[380px]"
+            >
+              <Link
+                to="/registration"
+                className="flex-1 px-2 py-[13px] bg-gradient-to-r from-[#e77218] to-[#fe8a2f] text-white text-[15px] sm:text-[16px] font-bold rounded-full transition-all active:scale-[0.97] text-center shadow-[0_4px_14px_rgba(231,114,24,0.35)] flex items-center justify-center whitespace-nowrap"
+              >
+                {t("Nav.Register")}
+              </Link>
+              <Link
+                to="/about"
+                className="flex-1 px-2 py-[13px] bg-white text-[#e77218] border-[1.5px] border-[#e77218] text-[15px] sm:text-[16px] font-bold rounded-full transition-all hover:bg-[#fff9f5] active:scale-[0.97] text-center shadow-[0_2px_10px_rgba(0,0,0,0.04)] flex items-center justify-center whitespace-nowrap"
+              >
+                {t("Nav.About")}
+              </Link>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.35,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="relative w-full flex-grow flex flex-col items-center justify-start z-10 px-0 overflow-hidden"
+          >
+            <div className="relative w-full flex-grow bg-white rounded-t-[36px] md:rounded-none overflow-hidden shadow-[0_-8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.03]">
+              {carouselImages.map((img, index) => (
+                <div
+                  key={index}
+                  className={`absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+                    index === currentSlide
+                      ? "opacity-100 z-[1]"
+                      : "opacity-0 z-0"
+                  }`}
+                  style={{ backgroundImage: `url(${img})` }}
+                />
+              ))}
+
+              <div className="flex justify-center gap-[6px] mt-5 absolute bottom-6 w-full z-20">
+                {carouselImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`h-[6px] rounded-full transition-all duration-400 backdrop-blur-sm ${
+                      index === currentSlide
+                        ? "w-[24px] bg-[#e77218] shadow-sm"
+                        : "w-[8px] bg-white/70 hover:bg-white/90 shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
+                    }`}
+                    onClick={() => goToSlide(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

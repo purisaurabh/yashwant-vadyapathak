@@ -57,20 +57,20 @@ const Navbar = () => {
           isOpen
             ? "bg-transparent shadow-none"
             : isHome && !scrolled
-              ? "bg-transparent"
+              ? "bg-primary md:bg-transparent md:shadow-none shadow-lg"
               : "bg-primary shadow-lg backdrop-blur-md"
         }`}
       >
         <div className="flex justify-between items-center h-[70px] px-6 md:px-8 overflow-visible">
           <NavLink
             to="/"
-            className="flex items-center justify-start h-full p-0 m-0 leading-none"
+            className="flex items-center justify-start py-2"
             onClick={() => setIsOpen(false)}
           >
             <img
-              src="/logo.png"
+              src="/yashwant_logo.png"
               alt="Yashwant Pathak Logo"
-              className="h-[68px] w-auto max-h-[68px] object-contain block brightness-0 invert m-0 p-0 leading-none"
+              className="h-[48px] md:h-[58px] w-auto object-contain transition-transform duration-300 hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
             />
           </NavLink>
 
