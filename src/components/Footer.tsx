@@ -31,11 +31,11 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8 max-w-[1600px] mx-auto px-6 md:px-8 lg:px-4 relative z-10">
-        <div className="flex flex-col items-start text-left col-span-1 md:col-span-2 lg:col-span-1 mb-2 lg:mb-0">
+        <div className="flex flex-col items-start text-left col-span-1 md:col-span-2 lg:col-span-1 mb-2 lg:mb-0 overflow-hidden pr-4">
           <img
-            src="/misc/about.png"
+            src="/logos/logo.png"
             alt="Yashwant Pathak Logo"
-            className="w-[180px] md:w-[200px] object-contain drop-shadow-sm mb-5 -mt-2"
+            className="w-full max-w-[240px] md:max-w-[280px] object-contain drop-shadow-sm mb-4 -mt-4 brightness-0 invert opacity-90 transform -translate-x-4 md:-translate-x-6 scale-110 md:scale-125"
           />
           <p className="text-white/95 text-[15px] md:text-[16px] leading-relaxed mb-4 font-['Tiro_Devanagari_Marathi',serif] font-normal tracking-wide max-w-sm">
             {t("Home.Bg")}

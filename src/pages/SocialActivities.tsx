@@ -55,12 +55,6 @@ const SocialActivities = () => {
       desc: t("Social.Act4Desc"),
       image: "/social-activities/4.png",
     },
-    {
-      title: t("Social.Act5Title"),
-      date: t("Social.Act5Date"),
-      desc: t("Social.Act5Desc"),
-      image: "/social-activities/5.png",
-    },
   ];
 
   return (

@@ -35,6 +35,7 @@ const Navbar = () => {
     const newLanguage = i18n.language === "en" ? "mr" : "en";
     i18n.changeLanguage(newLanguage);
     localStorage.setItem("preferred-language", newLanguage);
+    setIsOpen(false);
   };
 
   const navLinks = [

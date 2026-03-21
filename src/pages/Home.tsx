@@ -124,7 +124,6 @@ const Home = () => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* DESKTOP HERO LAYOUT */}
         <div className="hidden md:block relative w-full h-dvh overflow-hidden">
           {carouselImages.map((img, index) => (
             <div
@@ -144,7 +143,6 @@ const Home = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3] text-center w-full px-6">
             <div className="flex flex-col items-center justify-center w-full max-w-[95vw] lg:max-w-6xl mx-auto">
               <div className="grid grid-cols-[1fr_auto_1fr] md:gap-x-4 gap-y-8 md:gap-y-10 items-center justify-center w-full">
-                {/* Text section */}
                 <motion.div
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -170,7 +168,6 @@ const Home = () => {
                   {t("Home.CarouselTagline").split(" | ")[1]}
                 </motion.div>
 
-                {/* Buttons section */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -218,12 +215,10 @@ const Home = () => {
           </div>
         </div>
 
-        {/* MOBILE HERO LAYOUT */}
         <div
           className="md:hidden flex flex-col w-full bg-gradient-to-b from-[#ffffff] to-[#faf9f8] pt-[70px] relative overflow-hidden"
           style={{ height: "100dvh", minHeight: "100dvh", maxHeight: "100dvh" }}
         >
-          {/* Subtle Ambient Glow */}
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[30%] bg-[#FF9933]/10 rounded-full blur-[80px] pointer-events-none" />
           <div className="absolute top-[20%] right-[-10%] w-[50%] h-[30%] bg-[#FF9933]/5 rounded-full blur-[60px] pointer-events-none" />
 
