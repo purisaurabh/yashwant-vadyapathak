@@ -67,7 +67,7 @@ const Navbar = () => {
 
   const isHome = location.pathname === "/";
   const isHomeAtTop = isHome && !scrolled;
-  const showMobileLogo = !isHomeAtTop;
+  const showNavLogo = !isHomeAtTop;
 
   return (
     <>
@@ -84,7 +84,7 @@ const Navbar = () => {
             to="/"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className={`lg:hidden absolute left-4 top-1/2 -translate-y-1/2 h-[70px] flex items-center transition-opacity duration-300 ${
-              showMobileLogo
+              showNavLogo
                 ? "opacity-100 pointer-events-auto"
                 : "opacity-0 pointer-events-none"
             }`}
@@ -94,6 +94,24 @@ const Navbar = () => {
               src="/logos/logo.png"
               alt="Yashwant"
               className="h-18 w-auto object-contain object-left brightness-0 invert"
+              loading="eager"
+            />
+          </Link>
+
+          <Link
+            to="/"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className={`hidden lg:flex absolute left-8 top-1/2 -translate-y-1/2 h-[70px] items-center transition-opacity duration-300 ${
+              showNavLogo
+                ? "opacity-100 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+            aria-label="Go to home"
+          >
+            <img
+              src="/logos/logo.png"
+              alt="Yashwant"
+              className="h-20 w-auto object-contain object-left brightness-0 invert"
               loading="eager"
             />
           </Link>
