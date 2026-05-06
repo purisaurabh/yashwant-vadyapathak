@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import {
-  Facebook,
   Instagram,
   Youtube,
   Mail,
@@ -9,8 +8,26 @@ import {
   Phone,
 } from "lucide-react";
 
+const WhatsAppIcon = ({ size = 18 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M20.52 3.48A11.88 11.88 0 0 0 12.06 0C5.49 0 .15 5.34.15 11.9c0 2.1.55 4.16 1.6 5.98L0 24l6.29-1.64a11.9 11.9 0 0 0 5.77 1.47h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.45-8.45Zm-8.45 18.3h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.73.97 1-3.64-.24-.37a9.86 9.86 0 0 1-1.53-5.25c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.9a9.83 9.83 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.93 9.92Zm5.44-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.23-.64.08-.3-.15-1.25-.46-2.38-1.48-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.08-.8.38-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.48.71.3 1.27.48 1.7.61.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.11-.27-.18-.57-.33Z" />
+  </svg>
+);
+
 const Footer = () => {
   const { t, i18n } = useTranslation();
+  const whatsappNumber = (
+    import.meta.env.VITE_CONTACT_PHONE_2 || "+917972269030"
+  ).replace(/\D/g, "");
+  const whatsappLink = `https://wa.me/${whatsappNumber}`;
+  const locationLink =
+    "https://www.google.com/maps/search/?api=1&query=YashOne+Society+Maan+Road+Hinjewadi+Pune+411057";
 
   const isMarathi = i18n.language === "mr";
 
@@ -138,38 +155,49 @@ const Footer = () => {
             <div className="absolute bottom-0 left-0 w-12 h-1 bg-white/70 rounded-full" />
           </h4>
           <ul className="space-y-6 text-white/90 font-['Tiro_Devanagari_Marathi',serif] text-[16px] md:text-[16px] font-normal tracking-wide mt-2">
-            <li className="flex items-start gap-3 group">
-              <div className="bg-white/10 p-2.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors duration-300 shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)] mt-0.5">
-                <MapPin size={18} strokeWidth={2} />
-              </div>
-              <span className="leading-normal group-hover:text-white transition-colors duration-300">
-                {t("Footer.AddressLine1")} <br />
-                {t("Footer.AddressLine2")}
-              </span>
-            </li>
-            <li className="flex items-center gap-4 group">
-              <div className="bg-white/10 p-2.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors duration-300 shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
-                <Phone size={18} strokeWidth={2} />
-              </div>
+            <li>
               <a
-                href={`tel:${import.meta.env.VITE_CONTACT_PHONE_1 || "+919921773172"}`}
-                className="hover:text-white transition-all duration-300 flex-1 whitespace-nowrap"
+                href={locationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 group"
               >
-                {toLocalNumbers(
-                  import.meta.env.VITE_CONTACT_PHONE_DISPLAY ||
-                    "+91 9921773172, +91 7972269030",
-                )}
+                <div className="bg-white/10 p-2.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors duration-300 shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)] mt-0.5">
+                  <MapPin size={18} strokeWidth={2} />
+                </div>
+                <span className="leading-normal group-hover:text-white hover:text-white transition-colors duration-300">
+                  {t("Footer.AddressLine1")} <br />
+                  {t("Footer.AddressLine2")}
+                </span>
               </a>
             </li>
-            <li className="flex items-center gap-4 group">
-              <div className="bg-white/10 p-2.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors duration-300 shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
-                <Mail size={18} strokeWidth={2} />
-              </div>
+            <li>
+              <a
+                href={`tel:${import.meta.env.VITE_CONTACT_PHONE_1 || "+919921773172"}`}
+                className="flex items-center gap-4 group"
+              >
+                <div className="bg-white/10 p-2.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors duration-300 shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
+                  <Phone size={18} strokeWidth={2} />
+                </div>
+                <span className="hover:text-white transition-all duration-300 flex-1 whitespace-nowrap">
+                  {toLocalNumbers(
+                    import.meta.env.VITE_CONTACT_PHONE_DISPLAY ||
+                      "+91 9921773172, +91 7972269030",
+                  )}
+                </span>
+              </a>
+            </li>
+            <li>
               <a
                 href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`}
-                className="hover:text-white transition-all duration-300 flex-1 whitespace-nowrap"
+                className="flex items-center gap-4 group"
               >
-                {import.meta.env.VITE_CONTACT_EMAIL}
+                <div className="bg-white/10 p-2.5 rounded-full group-hover:bg-white group-hover:text-primary transition-colors duration-300 shrink-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)]">
+                  <Mail size={18} strokeWidth={2} />
+                </div>
+                <span className="hover:text-white transition-all duration-300 flex-1 whitespace-nowrap">
+                  {import.meta.env.VITE_CONTACT_EMAIL}
+                </span>
               </a>
             </li>
           </ul>
@@ -182,19 +210,23 @@ const Footer = () => {
           </h4>
           <div className="flex items-center gap-4 mt-2">
             <a
-              href="#"
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all duration-300 transform hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
             >
-              <Facebook size={18} fill="currentColor" className="stroke-none" />
+              <WhatsAppIcon size={18} />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/yashwant_vadhyapathak"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all duration-300 transform hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.1)]"
             >
               <Instagram size={18} />
             </a>
             <a
-              href="https://www.youtube.com/@yashwantvadyapathak"
+              href="https://www.youtube.com/@yashwantvadhyapathak"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all duration-300 transform hover:-translate-y-1 shadow-[0_2px_8px_rgba(0,0,0,0.1)]"

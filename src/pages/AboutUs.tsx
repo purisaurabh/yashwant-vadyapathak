@@ -99,11 +99,32 @@ const AboutUs = () => {
       color: "from-yellow-400 to-amber-500",
     },
     {
-      name: isMarathi ? "संबाळ" : "Sambal",
+      name: isMarathi ? "संभळ" : "Sambal",
       desc: t("About.Sambal"),
       short: isMarathi ? "दुहेरी ताल" : "Twin Beats",
       img: "/instruments/gen_sambal.png",
       color: "from-orange-400 to-red-500",
+    },
+    {
+      name: isMarathi ? "डमरू" : "Damru",
+      desc: t("About.Damru"),
+      short: isMarathi ? "ब्रह्मांडीय नाद" : "Cosmic Beats",
+      img: "/instruments/gen_damru.png",
+      color: "from-purple-500 to-indigo-600",
+    },
+    {
+      name: isMarathi ? "हलगी" : "Halgi",
+      desc: t("About.Halgi"),
+      short: isMarathi ? "लोककलेचा तडका" : "Folk Rhythm",
+      img: "/instruments/gen_halgi.png",
+      color: "from-rose-500 to-pink-600",
+    },
+    {
+      name: isMarathi ? "शंख" : "Shankh",
+      desc: t("About.Shankh"),
+      short: isMarathi ? "पवित्र नाद" : "Divine Sound",
+      img: "/instruments/gen_shankh.png",
+      color: "from-cyan-400 to-blue-500",
     },
   ];
 
@@ -114,10 +135,11 @@ const AboutUs = () => {
   ];
 
   const stats = [
-    { num: 10, label: t("About.StatExperience"), icon: History },
-    { num: 250, label: t("About.StatFamily"), icon: Users },
-    { num: 15, label: t("About.StatAwards"), icon: Award },
-    { num: 50, label: isMarathi ? "सादरीकरणे" : "Performances", icon: Star },
+    { num: 450, label: t("About.StatFamily"), icon: Users },
+    { num: 3, label: t("About.StatExperience"), icon: History },
+    { num: 45, label: t("About.StatPerformances"), icon: Star },
+    { num: 111, label: t("About.StatInstruments"), icon: Target },
+    { num: 9, label: t("About.StatAwards"), icon: Award },
   ];
 
   return (
@@ -174,71 +196,24 @@ const AboutUs = () => {
       </section>
 
       <section className="py-12 px-6 relative z-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="group bg-white p-10 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_15px_40px_rgba(217,119,6,0.12)] border border-orange-50 relative overflow-hidden flex flex-col items-start transition-shadow duration-300"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
-            <Target className="w-14 h-14 text-primary mb-6 relative z-10" />
-            <h2 className="text-3xl font-bold text-primary mb-4 relative z-10">
-              {t("About.Mission")}
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed relative z-10 font-medium text-justify">
-              {t("About.MissionText")}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="group bg-gradient-to-br from-primary to-orange-600 p-10 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_40px_rgba(217,119,6,0.25)] relative overflow-hidden text-white flex flex-col items-start transition-shadow duration-300"
-          >
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
-            <Eye className="w-14 h-14 text-orange-100 mb-6 relative z-10" />
-            <h2 className="text-3xl font-bold mb-4 relative z-10 text-white">
-              {t("About.Vision")}
-            </h2>
-            <p className="text-lg text-orange-50 leading-relaxed relative z-10 font-medium text-justify">
-              {t("About.VisionText")}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="pb-12 px-6 relative z-10">
         <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-12 relative">
-            <h2 className="text-2xl sm:text-3xl md:text-[clamp(1.75rem,3vw,2.5rem)] font-extrabold text-primary tracking-wide mb-4 drop-shadow-sm">
-              {t("About.ValuesTitle")}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="group bg-gradient-to-br from-white via-[#fff7ee] to-[#fff1e2] p-8 md:p-10 rounded-[2rem] shadow-[0_12px_36px_rgba(217,119,6,0.12)] hover:shadow-[0_18px_44px_rgba(217,119,6,0.18)] border border-[#f4cda7] relative overflow-hidden transition-shadow duration-300"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
+            <div className="absolute -bottom-28 -left-20 w-72 h-72 bg-[#e77218]/8 rounded-full pointer-events-none" />
+            <h2 className="text-3xl font-bold text-primary mb-6 relative z-10 text-center">
+              {isMarathi ? "आमचे ध्येय आणि दृष्टिकोन" : "Our Mission & Vision"}
             </h2>
-            <div className="w-24 border-t-4 border-primary mx-auto rounded-full shadow-[0_2px_4px_rgba(217,119,6,0.3)]" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((v, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-10 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_15px_40px_rgba(217,119,6,0.15)] border border-orange-50 hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center"
-              >
-                <div className="w-20 h-20 rounded-full bg-orange-50 flex items-center justify-center text-primary mb-6 transition-transform hover:scale-110 shadow-sm border border-primary/10">
-                  <v.icon className="w-10 h-10" />
-                </div>
-                <h3 className="text-2xl font-bold text-text-main mb-4 group-hover:text-primary transition-colors">
-                  {v.title}
-                </h3>
-                <p className="text-gray-600 font-medium leading-relaxed">
-                  {v.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+            <div className="relative z-10 bg-white/65 rounded-2xl border border-[#f4cda7] p-5 md:p-7">
+              <p className="text-base md:text-lg text-gray-700 leading-relaxed font-medium text-justify">
+                {t("About.MissionText")} {t("About.VisionText")}
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -267,7 +242,7 @@ const AboutUs = () => {
                 desc: isMarathi
                   ? "यशवन सोसायटी मधील रहिवाशांना शिवजयंती ढोल ताशाच्या गजरात साजरी करायची होती पण कोणतेही पथक उपलब्ध नव्हते. हा घाव जिव्हारी घेऊन दत्ता सुकाळकर, सुमित पाठक आणि मयुर हिरे यांच्या मनात पथक स्थापनेचा विचार आला. IT कर्मचाऱ्यांचे अपूर्ण स्वप्न पूर्ण करण्यासाठी त्यांनी हे शिवधनुष्य उचलले."
                   : "The desire to celebrate Shivjayanti with Dhol Tasha sparked the idea. With no pathaks available in Hinjawadi, Datta Sukalkar, Sumit Pathak, and Mayur Hire decided to form one, fulfilling the childhood dreams of many IT professionals.",
-                img: "https://images.unsplash.com/photo-1549556150-1c58619be4ad?auto=format&fit=crop&w=800&q=80",
+                img: "/history/1.JPG",
               },
               {
                 year: isMarathi ? "२२ मार्च २०२३" : "22 March 2023",
@@ -275,7 +250,7 @@ const AboutUs = () => {
                 desc: isMarathi
                   ? "पुण्यातील नामवंत बिल्डर श्री. सर्वेश जावडेकर यांनी आर्थिक मदत केली आणि गुढीपाडव्याच्या शुभ मुहूर्तावर पथकाची स्थापना झाली. 'अभेद्य' पथकाच्या वादकांचे मार्गदर्शन लाभल्यामुळे आम्ही ढोल ताशा शिकलो आणि इतरांनाही शिकवण दिली."
                   : "With financial support from renowned builder Mr. Sarvesh Javdekar, the pathak was founded on Gudi Padwa. Under the guidance of Pune's 'Abhedya' pathak, we learned the art of Dhol Tasha and started teaching others.",
-                img: "https://images.unsplash.com/photo-1629854492476-dcb999be5bd3?auto=format&fit=crop&w=800&q=80",
+                img: "/history/2.JPG",
               },
               {
                 year: isMarathi ? "सद्यस्थिती" : "Present",
@@ -283,7 +258,7 @@ const AboutUs = () => {
                 desc: isMarathi
                   ? "यशवंत वाद्यपथक हे स्वप्नातून सत्यात उतरवलेलं एक शिवधनुष्य आहे. चौथ्या वर्षात पदार्पण करत असताना, अनेक कलाकारांची कला प्रकाशझोतात आणण्याचा हा प्रवास आता अविरत सुरू आहे."
                   : "Yashwant Vadyapathak is a dream turned reality by the residents. Entering its fourth year, the pathak continues its never-ending journey, bringing the talent of many artists into the limelight.",
-                img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+                img: "/history/3.jpg",
               },
             ].map((item, i) => (
               <motion.div
@@ -340,14 +315,9 @@ const AboutUs = () => {
               {t("About.Instruments")}
             </h2>
             <div className="w-24 border-t-4 border-primary mx-auto rounded-full shadow-[0_2px_4px_rgba(217,119,6,0.3)] mb-8" />
-            <p className="text-[15px] md:text-xl text-gray-600 max-w-2xl mx-auto font-medium leading-relaxed">
-              {isMarathi
-                ? "लाकूड, धातू आणि शुद्ध भक्तीने तयार केलेली महाराष्ट्राची स्पंदने."
-                : "The heartbeat of Maharashtra, crafted with wood, metal, skin, and pure devotion."}
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10 w-full">
             {instruments.map((inst, index) => (
               <motion.div
                 key={index}
@@ -355,9 +325,9 @@ const AboutUs = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative h-[450px] md:h-[550px] rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 cursor-pointer w-full bg-slate-50 hover:shadow-[0_15px_40px_rgba(217,119,6,0.15)] transition-all duration-300"
+                className="group flex flex-col h-full rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 cursor-pointer w-full bg-white hover:shadow-[0_15px_40px_rgba(217,119,6,0.15)] transition-all duration-300"
               >
-                <div className="absolute top-0 left-0 w-full h-1/2 overflow-hidden">
+                <div className="relative w-full h-[220px] md:h-[250px] shrink-0 overflow-hidden">
                   <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none" />
                   <img
                     src={inst.img}
@@ -373,13 +343,13 @@ const AboutUs = () => {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 p-8 flex flex-col justify-center bg-white z-20">
+                <div className="relative p-6 pt-8 md:p-8 md:pt-10 flex flex-col flex-grow bg-white z-20">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20" />
 
-                  <p className="text-orange-500 font-bold tracking-widest uppercase text-xs mb-2">
+                  <p className="text-orange-500 font-bold tracking-widest uppercase text-xs mb-1.5">
                     {inst.short}
                   </p>
-                  <h3 className="text-3xl font-black text-text-main mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-black text-text-main mb-2.5 group-hover:text-primary transition-colors">
                     {inst.name}
                   </h3>
                   <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed">

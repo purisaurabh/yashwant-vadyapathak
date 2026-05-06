@@ -3,7 +3,14 @@ import type { TouchEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, useScroll } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Users, History, PlayCircle, Music, ChevronDown } from "lucide-react";
+import {
+  Users,
+  History,
+  PlayCircle,
+  Music,
+  Award,
+  ChevronDown,
+} from "lucide-react";
 import CountUp from "react-countup";
 
 const Home = () => {
@@ -162,60 +169,45 @@ const Home = () => {
             />
           ))}
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/40 to-black/60 z-[2]" />
+          <div className="absolute inset-0 z-[3] flex flex-col items-center justify-center pb-18 md:pb-26 px-6 pointer-events-none">
+            <div className="flex flex-col items-center justify-center w-full max-w-5xl mx-auto pointer-events-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className="flex justify-center w-full"
+              >
+                <img
+                  src="/logos/logo.png"
+                  alt="Yashwant Pathak Logo"
+                  className="h-[280px] md:h-[340px] lg:h-[400px] w-auto object-contain brightness-0 invert [filter:brightness(0)_invert(1)_drop-shadow(0_0_2px_rgba(0,0,0,1))_drop-shadow(0_4px_8px_rgba(0,0,0,0.98))_drop-shadow(0_10px_18px_rgba(0,0,0,0.9))_drop-shadow(0_18px_34px_rgba(0,0,0,0.82))]"
+                />
+              </motion.div>
 
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[3] text-center w-full px-6">
-            <div className="flex flex-col items-center justify-center w-full max-w-[95vw] lg:max-w-6xl mx-auto">
-              <div className="grid grid-cols-[1fr_auto_1fr] md:gap-x-4 gap-y-8 md:gap-y-10 items-center justify-center w-full">
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-right justify-self-end text-[clamp(1.6rem,3.8vw,3.75rem)] font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] tracking-wide whitespace-nowrap"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="flex flex-wrap items-center justify-center gap-5 md:gap-6 w-full"
+              >
+                <Link
+                  to="/about"
+                  className="flex items-center justify-center min-w-[180px] px-8 py-3.5 bg-white/95 backdrop-blur-md hover:bg-white text-[#e77218] text-lg font-extrabold rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.3)] hover:-translate-y-1"
                 >
-                  {t("Home.CarouselTagline").split(" | ")[0]}
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-center justify-self-center text-[clamp(1.6rem,3.8vw,3.75rem)] font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] mx-4 md:mx-6"
-                >
-                  |
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-left justify-self-start text-[clamp(1.6rem,3.8vw,3.75rem)] font-extrabold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] tracking-wide whitespace-nowrap"
-                >
-                  {t("Home.CarouselTagline").split(" | ")[1]}
-                </motion.div>
+                  {t("Nav.About")}
+                </Link>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.3,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="col-span-3 flex items-center justify-center gap-4 md:gap-5"
+                <Link
+                  to="/registration"
+                  className="flex items-center justify-center min-w-[180px] px-8 py-3.5 bg-gradient-to-r from-[#e77218] to-[#f58a36] hover:from-[#d96a12] hover:to-[#e77218] text-white text-lg font-extrabold rounded-full transition-all duration-300 shadow-[0_8px_30px_rgba(231,114,24,0.4)] hover:shadow-[0_12px_40px_rgba(231,114,24,0.6)] hover:-translate-y-1"
                 >
-                  <Link
-                    to="/about"
-                    className="inline-block px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/50 hover:border-white text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg hover:-translate-y-1"
-                  >
-                    {t("Nav.About")}
-                  </Link>
-
-                  <Link
-                    to="/registration"
-                    className="inline-block px-8 py-3 bg-[#e77218] hover:bg-[#d97706] text-white text-lg font-bold rounded-full transition-all duration-300 shadow-[0_0_15px_rgba(231,114,24,0.5)] hover:shadow-[0_0_25px_rgba(231,114,24,0.7)] hover:-translate-y-1"
-                  >
-                    {t("Nav.Register")}
-                  </Link>
-                </motion.div>
-              </div>
+                  {t("Nav.Register")}
+                </Link>
+              </motion.div>
             </div>
           </div>
 
@@ -459,7 +451,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="w-full mb-8 md:mb-10"
           >
-            <div className="rounded-2xl bg-white/10 backdrop-blur-[2px] border border-white/25 shadow-[0_10px_30px_rgba(0,0,0,0.12)] px-4 py-5 md:px-6 md:py-6 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-2 text-white">
+            <div className="rounded-2xl bg-white/10 backdrop-blur-[2px] border border-white/25 shadow-[0_10px_30px_rgba(0,0,0,0.12)] px-4 py-5 md:px-6 md:py-6 grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-2 text-white">
               <div className="flex flex-col items-center justify-center text-center p-2 group">
                 <Users
                   size={34}
@@ -468,7 +460,7 @@ const Home = () => {
                 <h3 className="text-3xl md:text-4xl font-black tracking-tight mb-1 flex items-center justify-center">
                   <CountUp
                     start={0}
-                    end={100}
+                    end={450}
                     formattingFn={toLocalNumbers}
                     enableScrollSpy
                     scrollSpyOnce
@@ -512,7 +504,7 @@ const Home = () => {
                 <h3 className="text-3xl md:text-4xl font-black tracking-tight mb-1 flex items-center justify-center">
                   <CountUp
                     start={0}
-                    end={20}
+                    end={45}
                     formattingFn={toLocalNumbers}
                     enableScrollSpy
                     scrollSpyOnce
@@ -534,7 +526,7 @@ const Home = () => {
                 <h3 className="text-3xl md:text-4xl font-black tracking-tight mb-1 flex items-center justify-center">
                   <CountUp
                     start={0}
-                    end={100}
+                    end={111}
                     formattingFn={toLocalNumbers}
                     enableScrollSpy
                     scrollSpyOnce
@@ -545,6 +537,28 @@ const Home = () => {
                 </h3>
                 <p className="text-sm md:text-base font-medium text-white/90">
                   {t("Home.Stat4")}
+                </p>
+              </div>
+
+              <div className="col-span-2 md:col-span-1 flex flex-col items-center justify-center text-center p-2 group">
+                <Award
+                  size={34}
+                  className="mb-2 text-white/90 group-hover:scale-110 transition-transform duration-300"
+                />
+                <h3 className="text-3xl md:text-4xl font-black tracking-tight mb-1 flex items-center justify-center">
+                  <CountUp
+                    start={0}
+                    end={9}
+                    formattingFn={toLocalNumbers}
+                    enableScrollSpy
+                    scrollSpyOnce
+                  >
+                    {({ countUpRef }) => <span ref={countUpRef} />}
+                  </CountUp>
+                  +
+                </h3>
+                <p className="text-sm md:text-base font-medium text-white/90">
+                  {t("Home.Stat5")}
                 </p>
               </div>
             </div>
@@ -660,7 +674,7 @@ const Home = () => {
                     <p className="text-gray-600 text-[15px] md:text-base leading-relaxed mb-5 text-justify">
                       {t("Home.History2023Text")}
                     </p>
-                    <div className="p-4 bg-orange-50/70 rounded-xl border-l-4 border-[#e77218] transition-colors duration-300 group-hover:bg-orange-50">
+                    <div className="hidden md:block p-4 bg-orange-50/70 rounded-xl border-l-4 border-[#e77218] transition-colors duration-300 group-hover:bg-orange-50">
                       <h4 className="text-base font-bold text-[#e77218] mb-2 flex items-center gap-2">
                         {t("Home.History2023Special")}
                       </h4>
@@ -668,6 +682,9 @@ const Home = () => {
                         {t("Home.History2023SpecialText")}
                       </p>
                     </div>
+                    <p className="md:hidden mt-2 text-gray-700 text-sm leading-relaxed text-justify">
+                      {t("Home.History2023SpecialText")}
+                    </p>
                   </motion.div>
                 </div>
 
@@ -681,7 +698,7 @@ const Home = () => {
                   >
                     <div className="absolute inset-0 bg-[#e77218]/10 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none" />
                     <img
-                      src="/backgrounds/2023.JPG"
+                      src="/backgrounds/2023.jpeg"
                       alt="Timeline 2023"
                       loading="eager"
                       fetchPriority="high"
@@ -747,7 +764,7 @@ const Home = () => {
                     <p className="text-gray-600 text-[15px] md:text-base leading-relaxed mb-5 text-justify">
                       {t("Home.History2024Text")}
                     </p>
-                    <div className="p-4 bg-orange-50/70 rounded-xl border-l-4 border-[#e77218] transition-colors duration-300 group-hover:bg-orange-50">
+                    <div className="hidden md:block p-4 bg-orange-50/70 rounded-xl border-l-4 border-[#e77218] transition-colors duration-300 group-hover:bg-orange-50">
                       <h4 className="text-base font-bold text-[#e77218] mb-2 flex items-center gap-2">
                         {t("Home.History2024Ganeshotsav")}
                       </h4>
@@ -755,6 +772,9 @@ const Home = () => {
                         {t("Home.History2024GaneshotsavText")}
                       </p>
                     </div>
+                    <p className="md:hidden mt-2 text-gray-700 text-sm leading-relaxed text-justify">
+                      {t("Home.History2024GaneshotsavText")}
+                    </p>
                   </motion.div>
                 </div>
 
@@ -770,6 +790,66 @@ const Home = () => {
                     <img
                       src="/backgrounds/timeline.jpg"
                       alt="Timeline 2024"
+                      loading="eager"
+                      fetchPriority="high"
+                      className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                    />
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative mb-20 flex w-full pt-[74px] md:pt-0">
+              <div className="absolute left-1/2 top-0 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-14 h-14 flex justify-center items-center z-20">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 200,
+                    delay: 0.2,
+                  }}
+                  className="bg-white border-4 border-[#e77218] text-[#e77218] w-full h-full rounded-full flex items-center justify-center font-extrabold text-lg shadow-[0_0_20px_rgba(231,114,24,0.3)]"
+                >
+                  2025
+                </motion.div>
+              </div>
+
+              <div className="flex flex-col md:flex-row w-full items-stretch relative z-10">
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pr-14 flex items-center justify-center md:justify-end order-2 md:order-1 mt-8 md:mt-0">
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-4 sm:p-5 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
+                  >
+                    <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-4 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-white border-b-[12px] border-b-transparent drop-shadow-[3px_0_3px_rgba(0,0,0,0.03)]" />
+                    <div className="md:hidden absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-b-[12px] border-b-white border-r-[16px] border-r-transparent drop-shadow-[0_-3px_3px_rgba(0,0,0,0.03)]" />
+
+                    <h3 className="text-2xl font-bold text-[#e77218] mb-3">
+                      {t("Home.History2025")}
+                    </h3>
+                    <p className="text-gray-600 text-[15px] md:text-base leading-relaxed text-justify">
+                      {t("Home.History2025Text")}
+                    </p>
+                  </motion.div>
+                </div>
+
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pl-14 flex items-center justify-center md:justify-start order-1 md:order-2">
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                    className="w-full max-h-[250px] md:max-h-[350px] overflow-hidden rounded-2xl shadow-lg relative group"
+                  >
+                    <div className="absolute inset-0 bg-[#e77218]/10 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none" />
+                    <img
+                      src="/backgrounds/2025.jpg"
+                      alt="Timeline 2025"
                       loading="eager"
                       fetchPriority="high"
                       className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500 ease-in-out"
@@ -798,15 +878,34 @@ const Home = () => {
               </div>
 
               <div className="flex flex-col md:flex-row w-full items-stretch relative z-10">
-                <div className="w-full md:w-1/2 px-0 md:px-0 md:pr-14 flex items-center justify-center md:justify-end order-2 md:order-1 mt-8 md:mt-0">
+                <div className="hidden md:flex w-full md:w-1/2 pr-14 items-center justify-end">
                   <motion.div
                     initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                    className="w-full max-h-[350px] overflow-hidden rounded-2xl shadow-lg relative group"
+                  >
+                    <div className="absolute inset-0 bg-[#e77218]/10 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none" />
+                    <img
+                      src="/backgrounds/timeline.jpg"
+                      alt="Timeline Conclusion"
+                      loading="eager"
+                      fetchPriority="high"
+                      className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                    />
+                  </motion.div>
+                </div>
+
+                <div className="w-full md:w-1/2 px-0 md:px-0 md:pl-14 flex items-center justify-center md:justify-start order-2 md:order-none mt-8 md:mt-0">
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="w-full bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-gray-100 p-4 sm:p-5 md:p-8 hover:shadow-[0_15px_40px_rgba(231,114,24,0.1)] transition-all duration-300 relative group"
                   >
-                    <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -right-4 w-0 h-0 border-t-[12px] border-t-transparent border-l-[16px] border-l-white border-b-[12px] border-b-transparent drop-shadow-[3px_0_3px_rgba(0,0,0,0.03)]" />
+                    <div className="hidden md:block absolute top-1/2 -translate-y-1/2 -left-4 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent drop-shadow-[-3px_0_3px_rgba(0,0,0,0.03)]" />
                     <div className="md:hidden absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-l-transparent border-b-[12px] border-b-white border-r-[16px] border-r-transparent drop-shadow-[0_-3px_3px_rgba(0,0,0,0.03)]" />
 
                     <h3 className="text-2xl font-bold text-[#e77218] mb-3">
@@ -818,13 +917,13 @@ const Home = () => {
                   </motion.div>
                 </div>
 
-                <div className="w-full md:w-1/2 px-0 md:px-0 md:pl-14 flex items-center justify-center md:justify-start order-1 md:order-2">
+                <div className="flex md:hidden w-full px-0 items-center justify-center order-1">
                   <motion.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                    className="w-full max-h-[250px] md:max-h-[350px] overflow-hidden rounded-2xl shadow-lg relative group"
+                    className="w-full max-h-[250px] overflow-hidden rounded-2xl shadow-lg relative group"
                   >
                     <div className="absolute inset-0 bg-[#e77218]/10 group-hover:bg-transparent transition-colors duration-300 z-10 pointer-events-none" />
                     <img

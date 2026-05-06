@@ -14,6 +14,10 @@ const ContactUs = () => {
   });
 
   const isMarathi = i18n.language === "mr";
+  const locationLink =
+    "https://www.google.com/maps/search/?api=1&query=YashOne+Society+Maan+Road+Hinjewadi+Pune+411057";
+  const phoneLink = `tel:${import.meta.env.VITE_CONTACT_PHONE_1 || "+919921773172"}`;
+  const emailLink = `mailto:${import.meta.env.VITE_CONTACT_EMAIL || ""}`;
 
   const toLocalNumbers = (text: string) => {
     if (isMarathi) {
@@ -92,9 +96,11 @@ const ContactUs = () => {
                     title: t("Contact.Location") || "Our Location",
                     detail: isMarathi
                       ? toLocalNumbers(
-                          "यशवन सोसायटी, मान रोड, हिंजवडी, पुणे-४११०५७",
+                          "यशवन सोसायटी, माण रोड, हिंजवडी, पुणे-४११०५७",
                         )
                       : "Yashone Society, Maan Road, Hinjewadi, Pune-411057",
+                    href: locationLink,
+                    external: true,
                   },
                   {
                     icon: Phone,
@@ -103,15 +109,24 @@ const ContactUs = () => {
                       import.meta.env.VITE_CONTACT_PHONE_DISPLAY ||
                         "+91 9921773172, +91 7972269030",
                     ),
+                    href: phoneLink,
+                    external: false,
                   },
                   {
                     icon: Mail,
                     title: t("Contact.Email") || "Email Address",
-                    detail:
-                      import.meta.env.VITE_CONTACT_EMAIL
+                    detail: import.meta.env.VITE_CONTACT_EMAIL,
+                    href: emailLink,
+                    external: false,
                   },
                 ].map((item, index) => (
-                  <div key={index} className="flex items-start gap-4 group">
+                  <a
+                    key={index}
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                    className="flex items-start gap-4 group"
+                  >
                     <div className="p-3 bg-orange-50 rounded-xl text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                       <item.icon size={24} />
                     </div>
@@ -119,11 +134,11 @@ const ContactUs = () => {
                       <h4 className="font-semibold text-gray-900">
                         {item.title}
                       </h4>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-gray-600 leading-relaxed group-hover:text-primary transition-colors duration-300">
                         {item.detail}
                       </p>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
 
