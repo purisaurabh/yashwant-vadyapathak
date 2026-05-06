@@ -2,6 +2,7 @@ import React, { useState, useEffect, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Maximize, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { usePhotoLightbox } from "../context/PhotoLightboxContext";
 
 type MediaType = "image" | "video";
 
@@ -83,6 +84,7 @@ GalleryItem.displayName = "GalleryItem";
 
 const Gallery = () => {
   const { t } = useTranslation();
+  const { setPhotoLightboxOpen } = usePhotoLightbox();
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
 
   const handleSelect = useCallback((item: MediaItem) => {
@@ -110,6 +112,11 @@ const Gallery = () => {
   const handleClose = useCallback(() => {
     setSelectedItem(null);
   }, []);
+
+  useEffect(() => {
+    setPhotoLightboxOpen(selectedItem !== null);
+    return () => setPhotoLightboxOpen(false);
+  }, [selectedItem, setPhotoLightboxOpen]);
 
   useEffect(() => {
     if (selectedItem) {

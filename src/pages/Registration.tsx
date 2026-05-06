@@ -120,6 +120,8 @@ const CustomSelect = ({
 const Registration = () => {
   const { t, i18n } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  /** Remount CustomSelect after reset — form.reset() does not clear its React state. */
+  const [instrumentSelectKey, setInstrumentSelectKey] = useState(0);
   const [modalConfig, setModalConfig] = useState({
     isOpen: false,
     success: true,
@@ -285,8 +287,6 @@ const Registration = () => {
                   const form = e.currentTarget;
                   const formData = new FormData(form);
 
-                  formData.append("date", new Date().toLocaleString());
-
                   const searchParams = new URLSearchParams();
                   formData.forEach((value, key) => {
                     searchParams.append(key, value.toString());
@@ -314,7 +314,7 @@ const Registration = () => {
                           ? "हा मोबाईल नंबर आधीच नोंदणीकृत आहे. कृपया दुसरा मोबाईल नंबर वापरा."
                           : "You have already submitted the form with this phone number. Please use a different phone number.",
                       });
-                    } else {
+                    } else if (result.status === "success") {
                       setModalConfig({
                         isOpen: true,
                         success: true,
@@ -324,6 +324,18 @@ const Registration = () => {
                       });
 
                       form.reset();
+                      setInstrumentSelectKey((k) => k + 1);
+                    } else {
+                      setModalConfig({
+                        isOpen: true,
+                        success: false,
+                        message:
+                          typeof result.message === "string"
+                            ? result.message
+                            : isMarathi
+                              ? "सबमिट अयशस्वी. कृपया पुन्हा प्रयत्न करा."
+                              : "Submission failed. Please try again.",
+                      });
                     }
                   } catch (error) {
                     console.error("Form submission error:", error);
@@ -397,6 +409,7 @@ const Registration = () => {
                     </label>
                     <div className="custom-select-wrapper text-lg">
                       <CustomSelect
+                        key={instrumentSelectKey}
                         name="instrument"
                         required
                         placeholder={

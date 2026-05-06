@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Instagram, Youtube, Share2, X } from "lucide-react";
+import { usePhotoLightbox } from "../context/PhotoLightboxContext";
 
 const whatsappNumber = (
   import.meta.env.VITE_CONTACT_PHONE_2 || "+917972269030"
@@ -36,7 +37,9 @@ const iconsInfo = [
 ];
 
 const SocialDock = () => {
+  const { photoLightboxOpen } = usePhotoLightbox();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const hideForDesktopLightbox = photoLightboxOpen ? "md:hidden" : "";
 
   useEffect(() => {
     if (isCollapsed) {
@@ -59,6 +62,7 @@ const SocialDock = () => {
                    rounded-full md:rounded-4xl
                    px-4 py-2.5 md:px-3 md:py-6 gap-3 md:gap-4
                    transition-all duration-500 backdrop-blur-md
+                   ${hideForDesktopLightbox}
                    ${
                      isCollapsed
                        ? "md:-translate-x-[150%] md:opacity-0 md:pointer-events-none md:left-0"
@@ -117,6 +121,7 @@ const SocialDock = () => {
       <button
         onClick={() => setIsCollapsed(false)}
         className={`fixed z-60 hidden md:flex items-center justify-center
+                   ${hideForDesktopLightbox}
                    left-0 top-1/2 -translate-y-1/2 w-10 h-16 bg-linear-to-b from-[#f08a32] to-[#d9650b] text-white
                    rounded-r-2xl border border-[#ff9b52] border-l-0
                    shadow-[0_10px_24px_rgba(231,114,24,0.45)]

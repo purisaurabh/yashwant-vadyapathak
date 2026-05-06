@@ -12,27 +12,30 @@ import Registration from "./pages/Registration";
 import OurJourney from "./pages/OurJourney";
 import NotFound from "./pages/NotFound";
 import SocialDock from "./components/SocialDock";
+import { PhotoLightboxProvider } from "./context/PhotoLightboxContext";
 
 function App() {
   return (
     <Router>
-      <ScrollToTop />
-      <Navbar />
-      <SocialDock />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/journey" element={<OurJourney />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/social-activities" element={<SocialActivities />} />
-          <Route path="/vadans" element={<VadansList />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+      <PhotoLightboxProvider>
+        <ScrollToTop />
+        <Navbar />
+        <SocialDock />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/journey" element={<OurJourney />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/social-activities" element={<SocialActivities />} />
+            <Route path="/vadans" element={<VadansList />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </PhotoLightboxProvider>
     </Router>
   );
 }
