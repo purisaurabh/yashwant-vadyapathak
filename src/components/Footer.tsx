@@ -238,9 +238,12 @@ const Footer = () => {
       </div>
 
       <div className="relative z-10 text-center mt-12 pt-5 border-t border-white/20 text-white/90 text-[14px] md:text-[15px] tracking-wide font-['Tiro_Devanagari_Marathi',_serif]">
-        <div className="flex justify-center items-center max-w-[1600px] mx-auto px-2 md:px-4">
+        <div className="flex flex-col justify-center items-center max-w-[1600px] mx-auto px-2 md:px-4 gap-1">
           <p className="text-center">
             &copy; {new Date().getFullYear()} {t("Footer.Rights")}
+          </p>
+          <p className="text-center w-full">
+            {t("Footer.DevelopedBy")}
           </p>
         </div>
       </div>

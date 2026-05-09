@@ -252,7 +252,8 @@ const resources = {
         "AddressLine2": "Hinjewadi, Pune-411057",
         "PhoneStr": "+91 9921773172, +91 7972269030",
         "SocialMedia": "Social Media",
-        "Rights": "Yashwant Vadypathak. All rights reserved."
+        "Rights": "Yashwant Vadypathak. All rights reserved.",
+        "DevelopedBy": "Developed and Designed by Saurabh Puri and Vaibhav Kardel.",
       },
       "NotFound": {
         "Title": "404",
@@ -512,7 +513,8 @@ const resources = {
         "AddressLine2": "हिंजवडी, पुणे-४११०५७",
         "PhoneStr": "+९१ ९९२१७७३१७२, +९१ ७९७२२६९०३०",
         "SocialMedia": "सोशल मीडिया",
-        "Rights": "यशवंत वाद्यपथक. सर्व हक्क राखीव."
+        "Rights": "यशवंत वाद्यपथक. सर्व हक्क राखीव.",
+        "DevelopedBy": "सौरभ पुरी आणि वैभव कर्डेल यांनी विकसित आणि डिझाइन केले आहे."
       },
       "NotFound": {
         "Title": "४०४",
